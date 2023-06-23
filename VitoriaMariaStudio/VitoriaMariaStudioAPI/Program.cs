@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using VitoriaMariaStudio.Application.Contracts.Persons;
+using VitoriaMariaStudio.Application.Services.Persons;
 using VitoriaMariaStudio.Repository.Context;
+using VitoriaMariaStudio.Repository.Contracts;
+using VitoriaMariaStudio.Repository.Repositories;
 using VitoriaMariaStudio.Repository.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +18,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<StudioDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IGenericRepository, GenericRepository>();
+builder.Services.AddScoped<IPersonService, PersonService>();
 
 var app = builder.Build();
 

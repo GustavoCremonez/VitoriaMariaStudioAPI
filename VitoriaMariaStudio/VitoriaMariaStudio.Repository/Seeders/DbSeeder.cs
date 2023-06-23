@@ -114,12 +114,12 @@ namespace VitoriaMariaStudio.Repository.Seeders
             schedulings[0].Jobs = jobs;
             schedulings[1].Jobs = jobs;
 
-            context.AddRange(roles);
-            context.AddRange(persons);
-            context.AddRange(professionals);
-            context.AddRange(categories);
-            context.AddRange(schedulings);
-            context.AddRange(jobs);
+            if (context.Roles.FirstOrDefault() == null) context.AddRange(roles);
+            if (context.Persons.FirstOrDefault() == null) context.AddRange(persons);
+            if (context.Professionals.FirstOrDefault() == null) context.AddRange(professionals);
+            if (context.Categories.FirstOrDefault() == null) context.AddRange(categories);
+            if (context.Schedulings.FirstOrDefault() == null) context.AddRange(schedulings);
+            if (context.Jobs.FirstOrDefault() == null) context.AddRange(jobs);
 
             context.SaveChanges();
         }

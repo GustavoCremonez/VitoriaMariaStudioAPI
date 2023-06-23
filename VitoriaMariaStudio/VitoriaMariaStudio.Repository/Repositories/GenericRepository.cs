@@ -12,12 +12,14 @@ namespace VitoriaMariaStudio.Repository.Repositories
             _dbContext = dbContext;
         }
 
-        public void Add<T>(T entity) where T : class
+        public bool Add<T>(T entity) where T : class
         {
             try
             {
                 _dbContext.Add(entity);
-                _dbContext.SaveChanges();
+                if (_dbContext.SaveChanges() > 0) return true;
+
+                return false;
             }
             catch (Exception)
             {
@@ -25,12 +27,14 @@ namespace VitoriaMariaStudio.Repository.Repositories
             }
         }
 
-        public void Delete<T>(T entity) where T : class
+        public bool Delete<T>(T entity) where T : class
         {
             try
             {
                 _dbContext.Remove(entity);
-                _dbContext.SaveChanges();
+                if (_dbContext.SaveChanges() > 0) return true;
+
+                return false;
             }
             catch (Exception)
             {
@@ -64,12 +68,14 @@ namespace VitoriaMariaStudio.Repository.Repositories
             }
         }
 
-        public void Update<T>(T entity) where T : class
+        public bool Update<T>(T entity) where T : class
         {
             try
             {
                 _dbContext.Update(entity);
-                _dbContext.SaveChanges();
+                if (_dbContext.SaveChanges() > 0) return true;
+
+                return false;
             }
             catch (Exception)
             {
