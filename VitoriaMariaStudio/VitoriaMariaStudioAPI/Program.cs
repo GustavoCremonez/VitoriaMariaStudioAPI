@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using VitoriaMariaStudio.Repository.Context;
 using VitoriaMariaStudio.Repository.Seeder;
 
@@ -15,6 +16,17 @@ builder.Services.AddDbContext<StudioDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<StudioDbContext>();
+
+    dbContext.Database.Migrate();
+
+    var seeder = new DbSeeder();
+    DbSeeder.Seed(dbContext);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
