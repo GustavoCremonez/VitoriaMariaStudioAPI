@@ -20,12 +20,12 @@
         {
         }
 
-        public Person(long id, string name, string email, string telefone, string address, long roleId, Role role)
+        public Person(long id, string name, string email, string phone, string address, long roleId, Role role)
         {
             Id = id;
             Name = name;
             Email = email;
-            Telefone = telefone;
+            Phone = phone;
             Address = address;
             RoleId = roleId;
             Role = role;
