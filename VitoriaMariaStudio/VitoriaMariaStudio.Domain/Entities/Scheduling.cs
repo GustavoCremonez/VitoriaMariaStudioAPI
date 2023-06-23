@@ -6,7 +6,13 @@
 
         public DateTime Date { get; set; }
 
+        public long ClientId { get; set; }
+
         public Person Client { get; set; }
+
+        public long ProfessionalId { get; set; }
+
+        public Person Professional { get; set; }
 
         public IEnumerable<Job> Jobs { get; set; }
 

@@ -14,15 +14,18 @@
 
         public Category Category { get; set; }
 
+        public IEnumerable<Scheduling> Schedulings { get; set; }
+
         public Job()
         { }
 
-        public Job(long id, string name, string description, decimal price)
+        public Job(long id, string name, string description, decimal price, long categoryId)
         {
             Id = id;
             Name = name;
             Description = description;
             Price = price;
+            CategoryId = categoryId;
         }
     }
 }
