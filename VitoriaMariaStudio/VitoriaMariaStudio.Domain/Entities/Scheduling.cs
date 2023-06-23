@@ -12,7 +12,7 @@
 
         public long ProfessionalId { get; set; }
 
-        public Person Professional { get; set; }
+        public Professional Professional { get; set; }
 
         public IEnumerable<Job> Jobs { get; set; }
 

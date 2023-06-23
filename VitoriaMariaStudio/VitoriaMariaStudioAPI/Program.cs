@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using VitoriaMariaStudio.Repository.Context;
+using VitoriaMariaStudio.Repository.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 

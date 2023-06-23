@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.Repository.Seeder;
 
 namespace VitoriaMariaStudio.Repository.Context
 {
@@ -19,14 +20,11 @@ namespace VitoriaMariaStudio.Repository.Context
 
         public DbSet<Role> Roles { get; set; }
 
+        public DbSet<Professional> Professionals { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Person
-
-            modelBuilder.Entity<Person>()
-                .HasOne(person => person.Role)
-                .WithMany()
-                .HasForeignKey(person => person.RoleId);
 
             modelBuilder.Entity<Person>()
                 .HasIndex(person => person.Email)
@@ -62,17 +60,58 @@ namespace VitoriaMariaStudio.Repository.Context
 
             #endregion Person
 
+            #region Professional
+
+            modelBuilder.Entity<Professional>()
+                .HasOne(professional => professional.Role)
+                .WithMany()
+                .HasForeignKey(professional => professional.RoleId);
+
+            modelBuilder.Entity<Professional>()
+                .HasIndex(professional => professional.Email)
+                .IsUnique(true);
+
+            modelBuilder.Entity<Professional>()
+                .Property(professional => professional.Name)
+                .HasMaxLength(125)
+                .IsRequired()
+                .IsUnicode(false)
+                .HasColumnType("varchar");
+
+            modelBuilder.Entity<Professional>()
+                .Property(professional => professional.Email)
+                .HasMaxLength(125)
+                .IsRequired()
+                .IsUnicode(false)
+                .HasColumnType("varchar");
+
+            modelBuilder.Entity<Professional>()
+                .Property(professional => professional.Phone)
+                .HasMaxLength(25)
+                .IsRequired()
+                .IsUnicode(false)
+                .HasColumnType("varchar");
+
+            modelBuilder.Entity<Professional>()
+                .Property(professional => professional.Address)
+                .HasMaxLength(125)
+                .IsRequired()
+                .IsUnicode(false)
+                .HasColumnType("varchar");
+
+            #endregion Professional
+
             #region Scheduling
 
             modelBuilder.Entity<Scheduling>()
-                .HasOne(person => person.Client)
+                .HasOne(scheduling => scheduling.Client)
                 .WithMany()
-                .HasForeignKey(person => person.ClientId);
+                .HasForeignKey(scheduling => scheduling.ClientId);
 
             modelBuilder.Entity<Scheduling>()
-                .HasOne(person => person.Professional)
+                .HasOne(scheduling => scheduling.Professional)
                 .WithMany()
-                .HasForeignKey(person => person.ProfessionalId);
+                .HasForeignKey(scheduling => scheduling.ProfessionalId);
 
             modelBuilder.Entity<Scheduling>()
                 .HasMany(scheduling => scheduling.Jobs)
