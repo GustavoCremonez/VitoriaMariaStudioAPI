@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VitoriaMariaStudio.Domain.Entities;
-using VitoriaMariaStudio.Repository.Seeder;
+using VitoriaMariaStudio.Repository.Seeders;
 
 namespace VitoriaMariaStudio.Repository.Context
 {

@@ -2,7 +2,7 @@
 using VitoriaMariaStudio.Domain.Entities;
 using VitoriaMariaStudio.Repository.Context;
 
-namespace VitoriaMariaStudio.Repository.Seeder
+namespace VitoriaMariaStudio.Repository.Seeders
 {
     public class DbSeeder
     {

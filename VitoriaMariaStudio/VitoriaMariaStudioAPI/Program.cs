@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using VitoriaMariaStudio.Repository.Context;
-using VitoriaMariaStudio.Repository.Seeder;
+using VitoriaMariaStudio.Repository.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
