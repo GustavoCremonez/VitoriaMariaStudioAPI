@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitoriaMariaStudio.API", "V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitoriaMariaStudio.Application", "VitoriaMariaStudio.Application\VitoriaMariaStudio.Application.csproj", "{CC264B9A-9758-466A-81E7-72F555BC8AF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitoriaMariaStudio.Domain", "VitoriaMariaStudio.Domain\VitoriaMariaStudio.Domain.csproj", "{1C5A9B56-33FE-4B48-A3C3-978EB5E6DE9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitoriaMariaStudio.DTO", "VitoriaMariaStudio.DTO\VitoriaMariaStudio.DTO.csproj", "{E4907EC0-CE41-420A-B289-8C03FB709E70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitoriaMariaStudio.Repository", "VitoriaMariaStudio.Repository\VitoriaMariaStudio.Repository.csproj", "{58D3A2C4-9434-476C-831A-7CD9A5DC6286}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{CC264B9A-9758-466A-81E7-72F555BC8AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC264B9A-9758-466A-81E7-72F555BC8AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC264B9A-9758-466A-81E7-72F555BC8AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C5A9B56-33FE-4B48-A3C3-978EB5E6DE9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5A9B56-33FE-4B48-A3C3-978EB5E6DE9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5A9B56-33FE-4B48-A3C3-978EB5E6DE9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5A9B56-33FE-4B48-A3C3-978EB5E6DE9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4907EC0-CE41-420A-B289-8C03FB709E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4907EC0-CE41-420A-B289-8C03FB709E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4907EC0-CE41-420A-B289-8C03FB709E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4907EC0-CE41-420A-B289-8C03FB709E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58D3A2C4-9434-476C-831A-7CD9A5DC6286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D3A2C4-9434-476C-831A-7CD9A5DC6286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D3A2C4-9434-476C-831A-7CD9A5DC6286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D3A2C4-9434-476C-831A-7CD9A5DC6286}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
