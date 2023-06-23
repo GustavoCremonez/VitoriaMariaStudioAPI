@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VitoriaMariaStudio.DTO", "V
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VitoriaMariaStudio.Repository", "VitoriaMariaStudio.Repository\VitoriaMariaStudio.Repository.csproj", "{58D3A2C4-9434-476C-831A-7CD9A5DC6286}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{F86F4F2C-945F-44C3-8858-E320C90350B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VitoriaMariaStudio.Utilities", "Utilities\VitoriaMariaStudio.Utilities.csproj", "{F86F4F2C-945F-44C3-8858-E320C90350B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
