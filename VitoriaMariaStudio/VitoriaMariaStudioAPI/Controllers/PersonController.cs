@@ -22,7 +22,7 @@ namespace VitoriaMariaStudio.API.Controllers
         {
             Person entity = _personService.GetOne(id);
 
-            if (entity == null) return NotFound();
+            if (entity == null) return NoContent();
 
             return Ok(entity);
         }
@@ -33,7 +33,7 @@ namespace VitoriaMariaStudio.API.Controllers
         {
             List<Person> entity = _personService.GetAll();
 
-            if (entity.Count == 0) return NotFound();
+            if (entity.Count == 0) return NoContent();
 
             return Ok(entity);
         }
@@ -66,7 +66,7 @@ namespace VitoriaMariaStudio.API.Controllers
         {
             Person person = _personService.GetOne(id);
 
-            if (person == null) return NotFound();
+            if (person == null) return NotFound("Não foi encontrado o usuário que deseja remover! tente novamente.");
 
             var hasDeleted = _personService.Delete(person);
 
