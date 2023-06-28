@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using VitoriaMariaStudio.Application.Contracts.Categories;
 using VitoriaMariaStudio.Application.Contracts.Persons;
+using VitoriaMariaStudio.Application.Services.Categories;
 using VitoriaMariaStudio.Application.Services.Persons;
 using VitoriaMariaStudio.Repository.Context;
 using VitoriaMariaStudio.Repository.Contracts;
@@ -21,6 +23,7 @@ builder.Services.AddDbContext<StudioDbContext>(options =>
 
 builder.Services.AddScoped<IGenericRepository, GenericRepository>();
 builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 
