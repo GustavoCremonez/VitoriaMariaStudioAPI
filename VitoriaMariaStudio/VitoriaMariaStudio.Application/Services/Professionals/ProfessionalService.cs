@@ -1,33 +1,43 @@
 ﻿using VitoriaMariaStudio.Application.Contracts.Professionals;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.Repository.Contracts;
 
 namespace VitoriaMariaStudio.Application.Services.Professionals
 {
     public class ProfessionalService : IProfessionalsService
     {
+        private readonly IGenericRepository _genericRepository;
+
+        public ProfessionalService(IGenericRepository genericRepository)
+        {
+            _genericRepository = genericRepository;
+        }
+
         public bool Add(Professional entity)
         {
-            throw new NotImplementedException();
+            return _genericRepository.Add(entity);
         }
 
         public bool Delete(Professional entity)
         {
-            throw new NotImplementedException();
+            return _genericRepository.Delete(entity);
         }
 
         public List<Professional> GetAll()
         {
-            throw new NotImplementedException();
+            return _genericRepository.GetAll<Professional>();
         }
 
         public Professional GetOne(long id)
         {
-            throw new NotImplementedException();
+            return _genericRepository.GetOne<Professional>(id);
         }
 
         public Professional Update(Professional entity)
         {
-            throw new NotImplementedException();
+            _genericRepository.Update(entity);
+
+            return _genericRepository.GetOne<Professional>(entity.Id);
         }
     }
 }
