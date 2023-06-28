@@ -12,15 +12,4 @@
     <ProjectReference Include="..\VitoriaMariaStudio.Repository\VitoriaMariaStudio.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\Scheduling\" />
-    <Folder Include="Contracts\Professional\" />
-    <Folder Include="Contracts\Role\" />
-    <Folder Include="Contracts\Job\" />
-    <Folder Include="Services\Job\" />
-    <Folder Include="Services\Professional\" />
-    <Folder Include="Services\Scheduling\" />
-    <Folder Include="Services\Role\" />
-  </ItemGroup>
-
 </Project>

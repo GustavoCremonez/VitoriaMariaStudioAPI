@@ -1,9 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using VitoriaMariaStudio.Application.Contracts.Categories;
+using VitoriaMariaStudio.Application.Contracts.Jobs;
 using VitoriaMariaStudio.Application.Contracts.Persons;
+using VitoriaMariaStudio.Application.Contracts.Professionals;
+using VitoriaMariaStudio.Application.Contracts.Roles;
+using VitoriaMariaStudio.Application.Contracts.Schedulings;
 using VitoriaMariaStudio.Application.Services.Categories;
+using VitoriaMariaStudio.Application.Services.Jobs;
 using VitoriaMariaStudio.Application.Services.Persons;
+using VitoriaMariaStudio.Application.Services.Professionals;
+using VitoriaMariaStudio.Application.Services.Roles;
+using VitoriaMariaStudio.Application.Services.Schedulings;
 using VitoriaMariaStudio.Repository.Context;
 using VitoriaMariaStudio.Repository.Contracts;
 using VitoriaMariaStudio.Repository.Repositories;
@@ -24,6 +32,10 @@ builder.Services.AddDbContext<StudioDbContext>(options =>
 builder.Services.AddScoped<IGenericRepository, GenericRepository>();
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProfessionalsService, ProfessionalService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<ISchedulingService, SchedulingService>();
+builder.Services.AddScoped<IJobService, JobService>();
 
 var app = builder.Build();
 
