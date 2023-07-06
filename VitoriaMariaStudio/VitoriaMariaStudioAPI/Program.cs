@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
+using AutoMapper;
 using VitoriaMariaStudio.Application.Contracts.Categories;
 using VitoriaMariaStudio.Application.Contracts.Jobs;
 using VitoriaMariaStudio.Application.Contracts.Persons;
@@ -16,6 +16,7 @@ using VitoriaMariaStudio.Repository.Context;
 using VitoriaMariaStudio.Repository.Contracts;
 using VitoriaMariaStudio.Repository.Repositories;
 using VitoriaMariaStudio.Repository.Seeders;
+using VitoriaMariaStudio.Application.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +30,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StudioDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IGenericRepository, GenericRepository>();
+var autoMapper = new MapperConfiguration(item => item.AddProfile(new MappingProfile()));
+IMapper mapper = autoMapper.CreateMapper();
+
+builder.Services.AddSingleton(mapper);
+
+builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProfessionalsService, ProfessionalService>();
