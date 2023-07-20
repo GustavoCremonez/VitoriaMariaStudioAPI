@@ -151,6 +151,10 @@ namespace VitoriaMariaStudio.Repository.Context
                 .IsRequired()
                 .HasColumnType("decimal(18,2)");
 
+            modelBuilder.Entity<Job>()
+                .Property(job => job.ExpectedTime)
+                .IsRequired();
+
             #endregion Job
 
             #region Category

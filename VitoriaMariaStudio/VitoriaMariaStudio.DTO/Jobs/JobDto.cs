@@ -13,6 +13,8 @@ namespace VitoriaMariaStudio.DTO.Jobs
 
         public decimal Price { get; set; }
 
+        public TimeSpan ExpectedTime { get; set; }
+
         public CategoryDto CategoryDto { get; set; }
 
         public IEnumerable<SchedulingDto> Schedulings { get; set; }

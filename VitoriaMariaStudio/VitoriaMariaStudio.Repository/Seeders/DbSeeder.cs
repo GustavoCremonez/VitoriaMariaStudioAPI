@@ -80,6 +80,7 @@ namespace VitoriaMariaStudio.Repository.Seeders
                     Price = 1,
                     Category = categories[0],
                     CategoryId = categories[0].Id,
+                    ExpectedTime = new TimeSpan(1, 30, 0)
                 },
                 new Job
                 {
@@ -88,6 +89,7 @@ namespace VitoriaMariaStudio.Repository.Seeders
                     Price = 2,
                     Category = categories[1],
                     CategoryId = categories[1].Id,
+                    ExpectedTime = new TimeSpan(0, 55, 0)
                 }
             };
 

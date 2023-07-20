@@ -12,6 +12,8 @@
 
         public long CategoryId { get; set; }
 
+        public TimeSpan ExpectedTime { get; set; }
+
         public Category Category { get; set; }
 
         public IEnumerable<Scheduling> Schedulings { get; set; }
