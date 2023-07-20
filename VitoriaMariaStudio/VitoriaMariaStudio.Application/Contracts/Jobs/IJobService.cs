@@ -1,17 +1,18 @@
 ﻿using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Jobs;
 
 namespace VitoriaMariaStudio.Application.Contracts.Jobs
 {
     public interface IJobService
     {
-        bool Add(Job entity);
+        bool Add(JobDto dto);
 
-        bool Delete(Job entity);
+        bool Delete(long id);
 
-        Job Update(Job entity);
+        JobDto Update(JobDto dto);
 
-        Job GetOne(long id);
+        JobDto GetOne(long id);
 
-        List<Job> GetAll();
+        List<JobDto> GetAll();
     }
 }

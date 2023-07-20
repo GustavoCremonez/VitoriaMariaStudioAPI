@@ -1,17 +1,17 @@
-﻿using VitoriaMariaStudio.Domain.Entities;
+﻿using VitoriaMariaStudio.DTO.Categories;
 
 namespace VitoriaMariaStudio.Application.Contracts.Categories
 {
     public interface ICategoryService
     {
-        bool Add(Category entity);
+        bool Add(CategoryDto dto);
 
-        bool Delete(Category entity);
+        bool Delete(long Id);
 
-        Category Update(Category entity);
+        CategoryDto Update(CategoryDto dto);
 
-        Category GetOne(long id);
+        CategoryDto GetOne(long id);
 
-        List<Category> GetAll();
+        List<CategoryDto> GetAll();
     }
 }

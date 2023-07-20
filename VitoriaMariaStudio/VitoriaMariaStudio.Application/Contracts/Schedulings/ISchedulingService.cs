@@ -1,17 +1,18 @@
 ﻿using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Schedulings;
 
 namespace VitoriaMariaStudio.Application.Contracts.Schedulings
 {
     public interface ISchedulingService
     {
-        bool Add(Scheduling entity);
+        bool Add(SchedulingDto dto);
 
-        bool Delete(Scheduling entity);
+        bool Delete(long id);
 
-        Scheduling Update(Scheduling entity);
+        SchedulingDto Update(SchedulingDto dto);
 
-        Scheduling GetOne(long id);
+        SchedulingDto GetOne(long id);
 
-        List<Scheduling> GetAll();
+        List<SchedulingDto> GetAll();
     }
 }

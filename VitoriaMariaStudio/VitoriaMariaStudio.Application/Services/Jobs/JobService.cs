@@ -1,43 +1,44 @@
 ﻿using VitoriaMariaStudio.Application.Contracts.Jobs;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Jobs;
 using VitoriaMariaStudio.Repository.Contracts;
 
 namespace VitoriaMariaStudio.Application.Services.Jobs
 {
     public class JobService : IJobService
     {
-        private readonly IGenericRepository _genericRepository;
+        private readonly IGenericRepository<Job, JobDto> _genericRepository;
 
-        public JobService(IGenericRepository genericRepository)
+        public JobService(IGenericRepository<Job, JobDto> genericRepository)
         {
             _genericRepository = genericRepository;
         }
 
-        public bool Add(Job entity)
+        public List<JobDto> GetAll()
         {
-            return _genericRepository.Add(entity);
+            return _genericRepository.GetAll();
         }
 
-        public bool Delete(Job entity)
+        public JobDto GetOne(long id)
         {
-            return _genericRepository.Delete(entity);
+            return _genericRepository.GetOne(id);
         }
 
-        public List<Job> GetAll()
+        public bool Add(JobDto dto)
         {
-            return _genericRepository.GetAll<Job>();
+            return _genericRepository.Add(dto);
         }
 
-        public Job GetOne(long id)
+        public bool Delete(long id)
         {
-            return _genericRepository.GetOne<Job>(id);
+            return _genericRepository.Delete(id);
         }
 
-        public Job Update(Job entity)
+        public JobDto Update(JobDto dto)
         {
-            _genericRepository.Update(entity);
+            _genericRepository.Update(dto);
 
-            return _genericRepository.GetOne<Job>(entity.Id);
+            return _genericRepository.GetOne(dto.Id);
         }
     }
 }

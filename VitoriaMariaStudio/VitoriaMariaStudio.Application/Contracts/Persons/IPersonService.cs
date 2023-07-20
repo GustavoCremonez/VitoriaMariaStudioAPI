@@ -1,17 +1,18 @@
 ﻿using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Persons;
 
 namespace VitoriaMariaStudio.Application.Contracts.Persons
 {
     public interface IPersonService
     {
-        bool Add(Person entity);
+        bool Add(PersonDto dto);
 
-        bool Delete(Person entity);
+        bool Delete(long id);
 
-        Person Update(Person entity);
+        PersonDto Update(PersonDto dto);
 
-        Person GetOne(long id);
+        PersonDto GetOne(long id);
 
-        List<Person> GetAll();
+        List<PersonDto> GetAll();
     }
 }

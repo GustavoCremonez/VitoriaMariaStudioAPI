@@ -1,43 +1,44 @@
 ﻿using VitoriaMariaStudio.Application.Contracts.Persons;
 using VitoriaMariaStudio.Repository.Contracts;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Persons;
 
 namespace VitoriaMariaStudio.Application.Services.Persons
 {
     public class PersonService : IPersonService
     {
-        private readonly IGenericRepository _genericRepository;
+        private readonly IGenericRepository<Person, PersonDto> _genericRepository;
 
-        public PersonService(IGenericRepository genericRepository)
+        public PersonService(IGenericRepository<Person, PersonDto> genericRepository)
         {
             _genericRepository = genericRepository;
         }
 
-        public bool Add(Person entity)
+        public List<PersonDto> GetAll()
         {
-            return _genericRepository.Add(entity);
+            return _genericRepository.GetAll();
         }
 
-        public bool Delete(Person entity)
+        public PersonDto GetOne(long id)
         {
-            return _genericRepository.Delete(entity);
+            return _genericRepository.GetOne(id);
         }
 
-        public List<Person> GetAll()
+        public bool Add(PersonDto dto)
         {
-            return _genericRepository.GetAll<Person>();
+            return _genericRepository.Add(dto);
         }
 
-        public Person GetOne(long id)
+        public bool Delete(long id)
         {
-            return _genericRepository.GetOne<Person>(id);
+            return _genericRepository.Delete(id);
         }
 
-        public Person Update(Person entity)
+        public PersonDto Update(PersonDto dto)
         {
-            _genericRepository.Update(entity);
+            _genericRepository.Update(dto);
 
-            return _genericRepository.GetOne<Person>(entity.Id);
+            return _genericRepository.GetOne(dto.Id);
         }
     }
 }

@@ -1,43 +1,44 @@
 ﻿using VitoriaMariaStudio.Application.Contracts.Roles;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Roles;
 using VitoriaMariaStudio.Repository.Contracts;
 
 namespace VitoriaMariaStudio.Application.Services.Roles
 {
     public class RoleService : IRoleService
     {
-        private readonly IGenericRepository _genericRepository;
+        private readonly IGenericRepository<Role, RoleDto> _genericRepository;
 
-        public RoleService(IGenericRepository genericRepository)
+        public RoleService(IGenericRepository<Role, RoleDto> genericRepository)
         {
             _genericRepository = genericRepository;
         }
 
-        public bool Add(Role entity)
+        public bool Add(RoleDto dto)
         {
-            return _genericRepository.Add(entity);
+            return _genericRepository.Add(dto);
         }
 
-        public bool Delete(Role entity)
+        public bool Delete(long id)
         {
-            return _genericRepository.Delete(entity);
+            return _genericRepository.Delete(id);
         }
 
-        public List<Role> GetAll()
+        public List<RoleDto> GetAll()
         {
-            return _genericRepository.GetAll<Role>();
+            return _genericRepository.GetAll();
         }
 
-        public Role GetOne(long id)
+        public RoleDto GetOne(long id)
         {
-            return _genericRepository.GetOne<Role>(id);
+            return _genericRepository.GetOne(id);
         }
 
-        public Role Update(Role entity)
+        public RoleDto Update(RoleDto dto)
         {
-            _genericRepository.Update(entity);
+            _genericRepository.Update(dto);
 
-            return _genericRepository.GetOne<Role>(entity.Id);
+            return _genericRepository.GetOne(dto.Id);
         }
     }
 }

@@ -1,15 +1,15 @@
 ﻿namespace VitoriaMariaStudio.Repository.Contracts
 {
-    public interface IGenericRepository
+    public interface IGenericRepository<TEntity, TDto>
     {
-        bool Add<T>(T entity) where T : class;
+        bool Add(TDto dto);
 
-        bool Delete<T>(T entity) where T : class;
+        bool Delete(long id);
 
-        bool Update<T>(T entity) where T : class;
+        bool Update(TDto dto);
 
-        T GetOne<T>(long id) where T : class;
+        TDto GetOne(long id);
 
-        List<T> GetAll<T>() where T : class;
+        List<TDto> GetAll();
     }
 }

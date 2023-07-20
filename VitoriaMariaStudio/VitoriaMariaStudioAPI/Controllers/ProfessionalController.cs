@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VitoriaMariaStudio.Application.Contracts.Professionals;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Professionals;
 
 namespace VitoriaMariaStudio.API.Controllers
 {
@@ -18,27 +19,27 @@ namespace VitoriaMariaStudio.API.Controllers
         [HttpGet("GetOne")]
         public IActionResult GetOne(long id)
         {
-            Professional entity = _professionalService.GetOne(id);
+            ProfessionalDto dto = _professionalService.GetOne(id);
 
-            if (entity == null) return NoContent();
+            if (dto == null) return NoContent();
 
-            return Ok(entity);
+            return Ok(dto);
         }
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            List<Professional> entities = _professionalService.GetAll();
+            List<ProfessionalDto> dtos = _professionalService.GetAll();
 
-            if (entities.Count == 0) return NoContent();
+            if (dtos.Count == 0) return NoContent();
 
-            return Ok(entities);
+            return Ok(dtos);
         }
 
         [HttpPost("Create")]
-        public IActionResult Create(Professional entity)
+        public IActionResult Create(ProfessionalDto dto)
         {
-            bool hasSaved = _professionalService.Add(entity);
+            bool hasSaved = _professionalService.Add(dto);
 
             if (hasSaved) return NoContent();
 
@@ -46,9 +47,9 @@ namespace VitoriaMariaStudio.API.Controllers
         }
 
         [HttpPut("Update")]
-        public IActionResult Update(Professional entity)
+        public IActionResult Update(ProfessionalDto dto)
         {
-            Professional professional = _professionalService.Update(entity);
+            ProfessionalDto professional = _professionalService.Update(dto);
 
             if (professional != null) return Ok(professional);
 
@@ -58,11 +59,7 @@ namespace VitoriaMariaStudio.API.Controllers
         [HttpDelete("Remove")]
         public IActionResult Remove(long id)
         {
-            Professional professional = _professionalService.GetOne(id);
-
-            if (professional == null) return NotFound("Não foi encontrado a/o professional que deseja remover! tente novamente.");
-
-            var hasDeleted = _professionalService.Delete(professional);
+            var hasDeleted = _professionalService.Delete(id);
 
             if (hasDeleted) return NoContent();
 

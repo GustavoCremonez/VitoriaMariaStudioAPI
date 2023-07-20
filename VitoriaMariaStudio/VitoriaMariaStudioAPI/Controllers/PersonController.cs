@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VitoriaMariaStudio.Application.Contracts.Persons;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Persons;
 
 namespace VitoriaMariaStudio.API.Controllers
 {
@@ -20,29 +21,29 @@ namespace VitoriaMariaStudio.API.Controllers
         [AllowAnonymous]
         public IActionResult GetOne(long id)
         {
-            Person entity = _personService.GetOne(id);
+            PersonDto dto = _personService.GetOne(id);
 
-            if (entity == null) return NoContent();
+            if (dto == null) return NoContent();
 
-            return Ok(entity);
+            return Ok(dto);
         }
 
         [HttpGet("GetAll")]
         [AllowAnonymous]
         public IActionResult GetAll()
         {
-            List<Person> entity = _personService.GetAll();
+            List<PersonDto> dtos = _personService.GetAll();
 
-            if (entity.Count == 0) return NoContent();
+            if (dtos.Count == 0) return NoContent();
 
-            return Ok(entity);
+            return Ok(dtos);
         }
 
         [HttpPost("Create")]
         [AllowAnonymous]
-        public IActionResult Create(Person entity)
+        public IActionResult Create(PersonDto dto)
         {
-            bool hasSaved = _personService.Add(entity);
+            bool hasSaved = _personService.Add(dto);
 
             if (hasSaved) return NoContent();
 
@@ -51,9 +52,9 @@ namespace VitoriaMariaStudio.API.Controllers
 
         [HttpPut("Update")]
         [AllowAnonymous]
-        public IActionResult Update(Person entity)
+        public IActionResult Update(PersonDto dto)
         {
-            Person person = _personService.Update(entity);
+            PersonDto person = _personService.Update(dto);
 
             if (person != null) return Ok(person);
 
@@ -64,11 +65,7 @@ namespace VitoriaMariaStudio.API.Controllers
         [AllowAnonymous]
         public IActionResult Remove(long id)
         {
-            Person person = _personService.GetOne(id);
-
-            if (person == null) return NotFound("Não foi encontrado o usuário que deseja remover! tente novamente.");
-
-            var hasDeleted = _personService.Delete(person);
+            var hasDeleted = _personService.Delete(id);
 
             if (hasDeleted) return NoContent();
 

@@ -1,43 +1,44 @@
 ﻿using VitoriaMariaStudio.Application.Contracts.Professionals;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Professionals;
 using VitoriaMariaStudio.Repository.Contracts;
 
 namespace VitoriaMariaStudio.Application.Services.Professionals
 {
     public class ProfessionalService : IProfessionalsService
     {
-        private readonly IGenericRepository _genericRepository;
+        private readonly IGenericRepository<Professional, ProfessionalDto> _genericRepository;
 
-        public ProfessionalService(IGenericRepository genericRepository)
+        public ProfessionalService(IGenericRepository<Professional, ProfessionalDto> genericRepository)
         {
             _genericRepository = genericRepository;
         }
 
-        public bool Add(Professional entity)
+        public bool Add(ProfessionalDto dto)
         {
-            return _genericRepository.Add(entity);
+            return _genericRepository.Add(dto);
         }
 
-        public bool Delete(Professional entity)
+        public bool Delete(long id)
         {
-            return _genericRepository.Delete(entity);
+            return _genericRepository.Delete(id);
         }
 
-        public List<Professional> GetAll()
+        public List<ProfessionalDto> GetAll()
         {
-            return _genericRepository.GetAll<Professional>();
+            return _genericRepository.GetAll();
         }
 
-        public Professional GetOne(long id)
+        public ProfessionalDto GetOne(long id)
         {
-            return _genericRepository.GetOne<Professional>(id);
+            return _genericRepository.GetOne(id);
         }
 
-        public Professional Update(Professional entity)
+        public ProfessionalDto Update(ProfessionalDto dto)
         {
-            _genericRepository.Update(entity);
+            _genericRepository.Update(dto);
 
-            return _genericRepository.GetOne<Professional>(entity.Id);
+            return _genericRepository.GetOne(dto.Id);
         }
     }
 }

@@ -1,17 +1,18 @@
 ﻿using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Professionals;
 
 namespace VitoriaMariaStudio.Application.Contracts.Professionals
 {
     public interface IProfessionalsService
     {
-        bool Add(Professional entity);
+        bool Add(ProfessionalDto dto);
 
-        bool Delete(Professional entity);
+        bool Delete(long id);
 
-        Professional Update(Professional entity);
+        ProfessionalDto Update(ProfessionalDto dto);
 
-        Professional GetOne(long id);
+        ProfessionalDto GetOne(long id);
 
-        List<Professional> GetAll();
+        List<ProfessionalDto> GetAll();
     }
 }

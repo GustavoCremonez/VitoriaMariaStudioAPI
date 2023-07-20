@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VitoriaMariaStudio.Application.Contracts.Categories;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Categories;
 
 namespace VitoriaMariaStudio.API.Controllers
 {
@@ -20,29 +21,29 @@ namespace VitoriaMariaStudio.API.Controllers
         [AllowAnonymous]
         public IActionResult GetOne(long id)
         {
-            Category entity = _categoryService.GetOne(id);
+            CategoryDto dto = _categoryService.GetOne(id);
 
-            if (entity == null) return NoContent();
+            if (dto == null) return NoContent();
 
-            return Ok(entity);
+            return Ok(dto);
         }
 
         [HttpGet("GetAll")]
         [AllowAnonymous]
         public IActionResult GetAll()
         {
-            List<Category> entities = _categoryService.GetAll();
+            List<CategoryDto> dtos = _categoryService.GetAll();
 
-            if (entities.Count == 0) return NoContent();
+            if (dtos.Count == 0) return NoContent();
 
-            return Ok(entities);
+            return Ok(dtos);
         }
 
         [HttpPost("Create")]
         [AllowAnonymous]
-        public IActionResult Create(Category entity)
+        public IActionResult Create(CategoryDto dto)
         {
-            bool hasSaved = _categoryService.Add(entity);
+            bool hasSaved = _categoryService.Add(dto);
 
             if (hasSaved) return NoContent();
 
@@ -51,9 +52,9 @@ namespace VitoriaMariaStudio.API.Controllers
 
         [HttpPut("Update")]
         [AllowAnonymous]
-        public IActionResult Update(Category entity)
+        public IActionResult Update(CategoryDto dto)
         {
-            Category category = _categoryService.Update(entity);
+            CategoryDto category = _categoryService.Update(dto);
 
             if (category != null) return Ok(category);
 
@@ -64,11 +65,7 @@ namespace VitoriaMariaStudio.API.Controllers
         [AllowAnonymous]
         public IActionResult Remove(long id)
         {
-            Category category = _categoryService.GetOne(id);
-
-            if (category == null) return NotFound("Não foi encontrado a categoria que deseja remover! tente novamente.");
-
-            var hasDeleted = _categoryService.Delete(category);
+            var hasDeleted = _categoryService.Delete(id);
 
             if (hasDeleted) return NoContent();
 

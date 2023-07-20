@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using VitoriaMariaStudio.Application.Contracts.Roles;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Roles;
 
 namespace VitoriaMariaStudio.API.Controllers
 {
@@ -20,27 +21,27 @@ namespace VitoriaMariaStudio.API.Controllers
         [HttpGet("GetOne")]
         public IActionResult GetOne(long id)
         {
-            Role entity = _roleService.GetOne(id);
+            RoleDto dto = _roleService.GetOne(id);
 
-            if (entity == null) return NoContent();
+            if (dto == null) return NoContent();
 
-            return Ok(entity);
+            return Ok(dto);
         }
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            List<Role> entities = _roleService.GetAll();
+            List<RoleDto> dtos = _roleService.GetAll();
 
-            if (entities.Count == 0) return NoContent();
+            if (dtos.Count == 0) return NoContent();
 
-            return Ok(entities);
+            return Ok(dtos);
         }
 
         [HttpPost("Create")]
-        public IActionResult Create(Role entity)
+        public IActionResult Create(RoleDto dto)
         {
-            bool hasSaved = _roleService.Add(entity);
+            bool hasSaved = _roleService.Add(dto);
 
             if (hasSaved) return NoContent();
 
@@ -48,9 +49,9 @@ namespace VitoriaMariaStudio.API.Controllers
         }
 
         [HttpPut("Update")]
-        public IActionResult Update(Role entity)
+        public IActionResult Update(RoleDto dto)
         {
-            Role role = _roleService.Update(entity);
+            RoleDto role = _roleService.Update(dto);
 
             if (role != null) return Ok(role);
 
@@ -60,11 +61,7 @@ namespace VitoriaMariaStudio.API.Controllers
         [HttpDelete("Remove")]
         public IActionResult Remove(long id)
         {
-            Role role = _roleService.GetOne(id);
-
-            if (role == null) return NotFound("Não foi encontrado o cargo que deseja remover! tente novamente.");
-
-            var hasDeleted = _roleService.Delete(role);
+            var hasDeleted = _roleService.Delete(id);
 
             if (hasDeleted) return NoContent();
 

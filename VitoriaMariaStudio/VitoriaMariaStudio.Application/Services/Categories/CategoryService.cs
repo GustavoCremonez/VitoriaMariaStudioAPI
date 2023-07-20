@@ -1,43 +1,45 @@
 ﻿using VitoriaMariaStudio.Application.Contracts.Categories;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Categories;
 using VitoriaMariaStudio.Repository.Contracts;
+using VitoriaMariaStudio.Repository.Repositories;
 
 namespace VitoriaMariaStudio.Application.Services.Categories
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IGenericRepository _genericRepository;
+        private readonly IGenericRepository<Category, CategoryDto> _genericRepository;
 
-        public CategoryService(IGenericRepository genericRepository)
+        public CategoryService(IGenericRepository<Category, CategoryDto> genericRepository)
         {
             _genericRepository = genericRepository;
         }
 
-        public bool Add(Category entity)
+        public bool Add(CategoryDto dto)
         {
-            return _genericRepository.Add(entity);
+            return _genericRepository.Add(dto);
         }
 
-        public bool Delete(Category entity)
+        public bool Delete(long id)
         {
-            return _genericRepository.Delete(entity);
+            return _genericRepository.Delete(id);
         }
 
-        public List<Category> GetAll()
+        public List<CategoryDto> GetAll()
         {
-            return _genericRepository.GetAll<Category>();
+            return _genericRepository.GetAll();
         }
 
-        public Category GetOne(long id)
+        public CategoryDto GetOne(long id)
         {
-            return _genericRepository.GetOne<Category>(id);
+            return _genericRepository.GetOne(id);
         }
 
-        public Category Update(Category entity)
+        public CategoryDto Update(CategoryDto dto)
         {
-            _genericRepository.Update(entity);
+            _genericRepository.Update(dto);
 
-            return _genericRepository.GetOne<Category>(entity.Id);
+            return _genericRepository.GetOne(dto.Id);
         }
     }
 }

@@ -1,43 +1,44 @@
 ﻿using VitoriaMariaStudio.Application.Contracts.Schedulings;
 using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Schedulings;
 using VitoriaMariaStudio.Repository.Contracts;
 
 namespace VitoriaMariaStudio.Application.Services.Schedulings
 {
     public class SchedulingService : ISchedulingService
     {
-        private readonly IGenericRepository _genericRepository;
+        private readonly IGenericRepository<Scheduling, SchedulingDto> _genericRepository;
 
-        public SchedulingService(IGenericRepository genericRepository)
+        public SchedulingService(IGenericRepository<Scheduling, SchedulingDto> genericRepository)
         {
             _genericRepository = genericRepository;
         }
 
-        public bool Add(Scheduling entity)
+        public bool Add(SchedulingDto dto)
         {
-            return _genericRepository.Add(entity);
+            return _genericRepository.Add(dto);
         }
 
-        public bool Delete(Scheduling entity)
+        public bool Delete(long id)
         {
-            return _genericRepository.Delete(entity);
+            return _genericRepository.Delete(id);
         }
 
-        public List<Scheduling> GetAll()
+        public List<SchedulingDto> GetAll()
         {
-            return _genericRepository.GetAll<Scheduling>();
+            return _genericRepository.GetAll();
         }
 
-        public Scheduling GetOne(long id)
+        public SchedulingDto GetOne(long id)
         {
-            return _genericRepository.GetOne<Scheduling>(id);
+            return _genericRepository.GetOne(id);
         }
 
-        public Scheduling Update(Scheduling entity)
+        public SchedulingDto Update(SchedulingDto dto)
         {
-            _genericRepository.Update(entity);
+            _genericRepository.Update(dto);
 
-            return _genericRepository.GetOne<Scheduling>(entity.Id);
+            return _genericRepository.GetOne(dto.Id);
         }
     }
 }

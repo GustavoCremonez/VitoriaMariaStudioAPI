@@ -1,21 +1,62 @@
-﻿using VitoriaMariaStudio.Repository.Context;
+﻿using AutoMapper;
+using VitoriaMariaStudio.Repository.Context;
 using VitoriaMariaStudio.Repository.Contracts;
 
 namespace VitoriaMariaStudio.Repository.Repositories
 {
-    public class GenericRepository : IGenericRepository
+    public class GenericRepository<TEntity, TDto> : IGenericRepository<TEntity, TDto> where TEntity : class
+                                                                                      where TDto : class
     {
         private readonly StudioDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public GenericRepository(StudioDbContext dbContext)
+        public GenericRepository(StudioDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        public bool Add<T>(T entity) where T : class
+        public List<TDto> GetAll()
         {
             try
             {
+                List<TEntity> entity = _dbContext.Set<TEntity>().ToList();
+                List<TDto> dto = new List<TDto>();
+
+                entity.ForEach(x =>
+                {
+                    dto.Add(_mapper.Map<TDto>(x));
+                });
+
+                return dto;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public TDto GetOne(long id)
+        {
+            try
+            {
+                TEntity entity = _dbContext.Set<TEntity>().Find(id);
+                TDto dto = _mapper.Map<TDto>(entity);
+
+                return dto;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool Add(TDto dto)
+        {
+            try
+            {
+                var entity = _mapper.Map<TEntity>(dto);
+
                 _dbContext.Add(entity);
                 if (_dbContext.SaveChanges() > 0) return true;
 
@@ -27,10 +68,13 @@ namespace VitoriaMariaStudio.Repository.Repositories
             }
         }
 
-        public bool Delete<T>(T entity) where T : class
+        public bool Delete(long id)
         {
             try
             {
+                var entity = _dbContext.Set<TEntity>()
+                                       .Find(id);
+
                 _dbContext.Remove(entity);
                 if (_dbContext.SaveChanges() > 0) return true;
 
@@ -42,36 +86,12 @@ namespace VitoriaMariaStudio.Repository.Repositories
             }
         }
 
-        public List<T> GetAll<T>() where T : class
+        public bool Update(TDto dto)
         {
             try
             {
-                var entity = _dbContext.Set<T>().ToList();
-                return entity;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+                var entity = _mapper.Map<TEntity>(dto);
 
-        public T GetOne<T>(long id) where T : class
-        {
-            try
-            {
-                var entity = _dbContext.Set<T>().Find(id);
-                return entity;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public bool Update<T>(T entity) where T : class
-        {
-            try
-            {
                 _dbContext.Update(entity);
                 if (_dbContext.SaveChanges() > 0) return true;
 

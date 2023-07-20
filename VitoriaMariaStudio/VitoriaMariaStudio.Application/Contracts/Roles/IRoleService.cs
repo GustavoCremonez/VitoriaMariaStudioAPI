@@ -1,17 +1,18 @@
 ﻿using VitoriaMariaStudio.Domain.Entities;
+using VitoriaMariaStudio.DTO.Roles;
 
 namespace VitoriaMariaStudio.Application.Contracts.Roles
 {
     public interface IRoleService
     {
-        bool Add(Role entity);
+        bool Add(RoleDto dto);
 
-        bool Delete(Role entity);
+        bool Delete(long id);
 
-        Role Update(Role entity);
+        RoleDto Update(RoleDto dto);
 
-        Role GetOne(long id);
+        RoleDto GetOne(long id);
 
-        List<Role> GetAll();
+        List<RoleDto> GetAll();
     }
 }
